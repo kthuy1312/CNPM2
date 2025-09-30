@@ -2,6 +2,7 @@ import adminRoutes from "routes/admin"
 import api from "routes/api"
 import authRouter from "routes/auth"
 import express from 'express'
+import initDatabase from "config/seed"
 
 const app = express()
 
@@ -31,6 +32,8 @@ authRouter(app);
 adminRoutes(app)
 api(app)
 
+//mock data
+initDatabase()
 
 
 app.listen(port, () => {
