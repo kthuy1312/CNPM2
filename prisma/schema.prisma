@@ -55,7 +55,7 @@ enum DroneJobStatus {
 
 // Models
 model User {
-  id           BigInt        @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   name         String
   email        String        @unique
   phone        String?
@@ -71,8 +71,8 @@ model User {
 }
 
 model Restaurant {
-  id          BigInt      @id @default(autoincrement())
-  ownerUserId BigInt
+  id          Int      @id @default(autoincrement())
+  ownerUserId Int
   name        String
   address     String?
   latitude    Decimal?    @db.Decimal(10,6)
@@ -90,8 +90,8 @@ model Restaurant {
 }
 
 model Menu {
-  id           BigInt      @id @default(autoincrement())
-  restaurantId BigInt
+  id           Int      @id @default(autoincrement())
+  restaurantId Int
   name         String?
   isActive     Boolean     @default(true)
   createdAt    DateTime    @default(now())
@@ -104,8 +104,8 @@ model Menu {
 }
 
 model MenuItem {
-  id        BigInt       @id @default(autoincrement())
-  menuId    BigInt
+  id        Int       @id @default(autoincrement())
+  menuId    Int
   name      String
   basePrice Decimal       @db.Decimal(10,2)
   isActive  Boolean       @default(true)
@@ -120,8 +120,8 @@ model MenuItem {
 }
 
 model ItemOption {
-  id         BigInt      @id @default(autoincrement())
-  itemId     BigInt
+  id         Int      @id @default(autoincrement())
+  itemId     Int
   name       String
   type       String       @default("single") // "single" | "multi"
   isRequired Boolean      @default(false)
@@ -134,8 +134,8 @@ model ItemOption {
 }
 
 model OptionValue {
-  id        BigInt            @id @default(autoincrement())
-  optionId  BigInt
+  id        Int            @id @default(autoincrement())
+  optionId  Int
   label     String
   addPrice  Decimal           @default(0) @db.Decimal(10,2)
 
@@ -147,9 +147,9 @@ model OptionValue {
 }
 
 model Order {
-  id              BigInt       @id @default(autoincrement())
-  customerId      BigInt
-  restaurantId    BigInt
+  id              Int       @id @default(autoincrement())
+  customerId      Int
+  restaurantId    Int
   totalAmount     Decimal      @db.Decimal(12,2)
   status          OrderStatus  @default(ORDERED)
   paymentStatus   PayStatus    @default(PENDING)
@@ -176,9 +176,9 @@ model Order {
 }
 
 model OrderItem {
-  id        BigInt     @id @default(autoincrement())
-  orderId   BigInt
-  itemId    BigInt
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  itemId    Int
   qty       Int
   unitPrice Decimal     @db.Decimal(10,2)
 
@@ -192,9 +192,9 @@ model OrderItem {
 }
 
 model OrderItemOption {
-  id            BigInt      @id @default(autoincrement())
-  orderItemId   BigInt
-  optionValueId BigInt
+  id            Int      @id @default(autoincrement())
+  orderItemId   Int
+  optionValueId Int
   addPrice      Decimal      @default(0) @db.Decimal(10,2)
 
   orderItem     OrderItem    @relation(fields: [orderItemId], references: [id])
@@ -206,7 +206,7 @@ model OrderItemOption {
 }
 
 model Drone {
-  id         BigInt       @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String
   batteryPct Int          @default(100)
   status     DroneStatus  @default(FREE)
@@ -218,9 +218,9 @@ model Drone {
 }
 
 model DroneJob {
-  id        BigInt        @id @default(autoincrement())
-  orderId   BigInt
-  droneId   BigInt
+  id        Int        @id @default(autoincrement())
+  orderId   Int
+  droneId   Int
   status    DroneJobStatus @default(QUEUED)
   eta       DateTime?
   createdAt DateTime      @default(now())
