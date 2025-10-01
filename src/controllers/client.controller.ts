@@ -2,11 +2,6 @@ import { Request, Response } from "express";
 import { hashPassword } from "services/auth.service";
 import { handleBlockUser, handleCreateUser, handleGetAllUser, handleUpdateUser, handleViewUser } from "services/client.service";
 
-//   router.post("/block-user/:id", postBlockUser)
-//     router.post("/create-user", postCreateUser)
-//     router.get("/view-user/:id", getViewUser)
-//     router.post("/update-user", postUpdateUser)
-
 
 const postCreateUser = async (req: Request, res: Response) => {
     try {
